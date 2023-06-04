@@ -10,7 +10,7 @@ function App() {
       <button className="btn btn-secondary">Button</button>
       <button className="btn btn-accent">Button</button>
       <button className="btn btn-ghost">Button</button>
-      <button className="btn btn-link">Button</button>
+      <button className="btn btn-NavLink">Button</button>
     </>
   )
 }

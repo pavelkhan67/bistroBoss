@@ -12,20 +12,30 @@ const GoogleLogin = () => {
 
     const handleGoogleLogin = () => {
         googleSignIn()
-        .then(result => {
-            // console.log(result.user);
-            Swal.fire({
-                title: 'User Login Successful.',
-                showClass: {
-                    popup: 'animate__animated animate__fadeInDown'
-                },
-                hideClass: {
-                    popup: 'animate__animated animate__fadeOutUp'
-                }
-            });
-            navigate(from, {replace: true})
-        })
-        .catch(error => console.log(error))
+            .then(result => {
+                const loggedInUser = result.user;
+                console.log(loggedInUser);
+                const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+                    body: JSON.stringify(saveUser)
+                })
+                    .then(res => res.json())
+                    .then(() => {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'User Login successfully.',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        navigate(from, { replace: true });
+
+                    })
+                    .catch(error => console.log(error))
+            })
     }
     return (
         <div>

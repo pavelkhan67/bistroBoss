@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate, validateCaptcha } from 'react-simple-captcha';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { NavLink, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 import Swal from 'sweetalert2'
 import { AuthContext } from '../../provider/AuthProvider';
@@ -73,7 +73,7 @@ const Login = () => {
                                 </label>
                                 <input type="password" name="password" placeholder="password" className="input input-bordered" />
                                 <label className="label">
-                                    <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                    <a href="#" className="label-text-alt NavLink NavLink-hover">Forgot password?</a>
                                 </label>
                             </div>
                             <div className="form-control">
@@ -84,10 +84,10 @@ const Login = () => {
 
                             </div>
                             <div className="form-control mt-6">
-                                <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
+                                <input disabled={false} className="btn btn-primary" type="submit" value="Login" />
                             </div>
                             <GoogleLogin></GoogleLogin>
-                            <p><small>New to Bistro Boss? <Link to="/signup"><span className='text-warning underline'>Register</span></Link> </small></p>
+                            <p><small>New to Bistro Boss? <NavLink to="/signup"><span className='text-warning underline'>Register</span></NavLink> </small></p>
                         </form>
                         
                     </div>

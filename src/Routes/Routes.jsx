@@ -10,6 +10,11 @@ import SignUp from "../Pages/UserLog/SignUp";
 import PrivateRoute from "./PrivateRoute";
 import ErrorPage from "../../ErrorPage";
 import Contact from "../Pages/ContactUs/Contact";
+import Dashboard from "../Layout/Dashboard";
+import MyCart from "../Pages/Dashboard/MyCart/MyCart";
+import AllUsers from "../Pages/Dashboard/AllUsers/AllUsers";
+import AdminRoute from "./AdminRoute";
+import AddItem from "../Pages/Dashboard/AddItem/Additem";
   
   export const router = createBrowserRouter([
     {
@@ -31,7 +36,7 @@ import Contact from "../Pages/ContactUs/Contact";
         },
         {
             path: "/order/:category",
-            element: <PrivateRoute><Order></Order></PrivateRoute>
+            element: <Order></Order>
         },
         {
           path: "/login",
@@ -43,4 +48,27 @@ import Contact from "../Pages/ContactUs/Contact";
         }
       ]
     },
+    {
+      path: "dashboard",
+      element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
+      children: [
+        {
+          path: "mycart",
+          element: <MyCart></MyCart>
+        },
+        {
+          path: 'allusers', 
+          element: <AllUsers></AllUsers>
+        },
+        {
+          path: 'additem',
+          element: <AdminRoute><AddItem></AddItem></AdminRoute>
+        },
+        // {
+        //   path: 'manageitems',
+        //   element: <AdminRoute><ManageItems></ManageItems></AdminRoute>
+        // }
+
+      ]
+    }
   ]);

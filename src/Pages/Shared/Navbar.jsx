@@ -1,10 +1,14 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { FaCartPlus } from 'react-icons/fa';
+import useCart from '../../hooks/useCart';
 
 const Navbar = () => {
     const { user, logOut } = useContext(AuthContext);
+    const [cart] = useCart();
+
     const handleLogOut = () => {
         logOut()
             .then(() => {
@@ -25,15 +29,16 @@ const Navbar = () => {
         <li><NavLink to="/">Home</NavLink></li>
         <li><NavLink to="/contact">Contact Us</NavLink></li>
         <li><NavLink to="/menu">Our Menu</NavLink></li>
-        {
-            user ? <>
-            <div className="tooltip tooltip-left" data-tip={user.displayName}>
-            <button onClick={handleLogOut} className='btn btn-ghost normal-case text-base'>Log Out</button>
-            </div>
-            
-        </> : <> <NavLink to="/login"><button className='btn btn-ghost normal-case text-base'>Login</button></NavLink> </>
-        }
         <li><NavLink to="/order/salad">Order Food</NavLink></li>
+        <li><NavLink to="/dashboard">Dashboard</NavLink></li>
+
+        <Link to="/dashboard/mycart">
+            <button className="btn btn-outline btn-warning gap-2">
+                <FaCartPlus></FaCartPlus>
+                <div className="badge badge-warning">+{cart?.length || 0}</div>
+            </button>
+        </Link>
+
     </>
 
     return (
@@ -49,8 +54,8 @@ const Navbar = () => {
                         </ul>
                     </div>
                     <div>
-                    <a className="btn btn-ghost normal-case text-xl">BISTRO BOSS</a>
-                    <p className='ps-5 text-xs font-semibold'>RESTAURANT</p>
+                        <a className="btn btn-ghost normal-case text-sm lg:text-xl">BISTRO BOSS</a>
+                        <p className='ps-5 text-xs font-semibold'>RESTAURANT</p>
                     </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
@@ -59,7 +64,14 @@ const Navbar = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <a className="btn">Get started</a>
+                    {
+                        user ? <>
+                            <div className="tooltip tooltip-left" data-tip={user.displayName}>
+                                <button onClick={handleLogOut} className='btn btn-warning btn-outline  normal-case text-base'><span className='text-white'>Log Out</span></button>
+                            </div>
+
+                        </> : <> <NavLink to="/login"><button className='btn btn-warning btn-outline  normal-case text-base'><span className='text-white'>Login</span></button></NavLink> </>
+                    }
                 </div>
             </div>
         </>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteError } from "react-router-dom";
+import { NavLink, useRouteError } from "react-router-dom";
 import img from "/src/assets/404.gif"
 
 const ErrorPage = () => {
@@ -16,7 +16,7 @@ const ErrorPage = () => {
                         <i>{error.statusText || error.message}</i>
                     </p>
                 </div>
-                <Link to="/"><button className="btn btn-warning normal-case text-base mb-10">Back To Homepage</button></Link>
+                <NavLink to="/"><button className="btn btn-warning normal-case text-base mb-10">Back To Homepage</button></NavLink>
             </div>
         </div>
     );

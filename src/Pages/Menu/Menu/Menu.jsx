@@ -15,6 +15,7 @@ const Menu = () => {
     const [menu] = useMenu();
     const desserts = menu.filter(item => item.category === 'dessert');
     const soup = menu.filter(item => item.category === 'soup');
+    const desi = menu.filter(item => item.category === 'desi');
     const salad = menu.filter(item => item.category === 'salad');
     const pizza = menu.filter(item => item.category === 'pizza');
     const offered = menu.filter(item => item.category === 'offered');
@@ -36,6 +37,7 @@ const Menu = () => {
             <MenuCategory items={salad} title="salad" img={saladImg} message="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."></MenuCategory>
             {/* soup menu items  */}
             <MenuCategory items={soup} title="soup" img={soupImg} message="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."></MenuCategory>
+            <MenuCategory items={desi} title="desi" img={soupImg} message="Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda excepturi exercitationem quasi. In deleniti eaque aut repudiandae et a id nisi."></MenuCategory>
         </div>
     );
 };
